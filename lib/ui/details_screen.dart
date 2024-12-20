@@ -33,57 +33,57 @@ class _DetailsScreenState extends State<DetailsScreen> {
     DateTime now = DateTime.now();
     DateTime date = DateTime(now.year, now.month, now.day);
     print(date);
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: Icon(Icons.menu),
-        title: Text("Bill Details"),
-        actions: [Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            children: [
-              GestureDetector(
-                onTap:() {
-                   shareImage();
-                },
-                child: Container(
-                  height: 40,
-                  width: 40,
-                  color: Colors.blue,
-                  child: Icon(Icons.picture_as_pdf,color: Colors.white,),
+    return Screenshot(
+      controller: screenshotController,
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          leading: Icon(Icons.menu),
+          title: Text("Bill Details"),
+          actions: [Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                GestureDetector(
+                  onTap:() {
+                     shareImage();
+                  },
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    color: Colors.blue,
+                    child: Icon(Icons.picture_as_pdf,color: Colors.white,),
+                  ),
                 ),
-              ),
-              SizedBox(width: 5,),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => GenerateBill(),));
-                },
-                child: Container(
-                  height: 40,
-                  width: 40,
-                  color: Colors.blue,
-                  child: Icon(Icons.edit,color: Colors.white,),
+                SizedBox(width: 5,),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => GenerateBill(),));
+                  },
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    color: Colors.blue,
+                    child: Icon(Icons.edit,color: Colors.white,),
+                  ),
                 ),
-              ),
-              SizedBox(width: 5,),
-              GestureDetector(
-                onTap: () {
-                  data.clear();
-                },
-                child: Container(
-                  height: 40,
-                  width: 40,
-                  color: Colors.redAccent,
-                  child: Icon(Icons.delete,color: Colors.white,),
+                SizedBox(width: 5,),
+                GestureDetector(
+                  onTap: () {
+                    data.clear();
+                  },
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    color: Colors.redAccent,
+                    child: Icon(Icons.delete,color: Colors.white,),
+                  ),
                 ),
-              ),
-            ],
-          ),
-        )],
-      ),
-      body: Screenshot(
-        controller: screenshotController,
-        child: SafeArea(
+              ],
+            ),
+          )],
+        ),
+        body: SafeArea(
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
