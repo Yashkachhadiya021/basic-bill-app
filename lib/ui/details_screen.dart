@@ -42,18 +42,15 @@ class _DetailsScreenState extends State<DetailsScreen> {
           padding: const EdgeInsets.all(8.0),
           child: Row(
             children: [
-              Screenshot(
-                controller: screenshotController,
-                child: GestureDetector(
-                  onTap:() {
-                     shareImage();
-                  },
-                  child: Container(
-                    height: 40,
-                    width: 40,
-                    color: Colors.blue,
-                    child: Icon(Icons.picture_as_pdf,color: Colors.white,),
-                  ),
+              GestureDetector(
+                onTap:() {
+                   shareImage();
+                },
+                child: Container(
+                  height: 40,
+                  width: 40,
+                  color: Colors.blue,
+                  child: Icon(Icons.picture_as_pdf,color: Colors.white,),
                 ),
               ),
               SizedBox(width: 5,),
@@ -84,19 +81,44 @@ class _DetailsScreenState extends State<DetailsScreen> {
           ),
         )],
       ),
-      body: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 8,),
-                Container(
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Row(
+      body: Screenshot(
+        controller: screenshotController,
+        child: SafeArea(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 8,),
+                  Container(
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Row(
+                                children: [
+                                  Container(
+                                    color: Colors.white,
+                                    width: 178,
+                                    height: 50,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 20),
+                                          child: Text("Bill No:",style: TextStyle(color: Colors.grey),),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
+                                          child: Text('1')
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Row(
                               children: [
                                 Container(
                                   color: Colors.white,
@@ -106,193 +128,171 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsets.only(left: 20),
-                                        child: Text("Bill No:",style: TextStyle(color: Colors.grey),),
+                                        padding: const EdgeInsets.only(left: 20,top: 8),
+                                        child: Text("Date:",style: TextStyle(color: Colors.grey)),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
-                                        child: Text('1')
+                                          padding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
+                                          child: Container(
+                                            height: 20,
+                                            child: Text(date.toString()),
+                                          )
                                       )
                                     ],
                                   ),
                                 ),
                               ],
                             ),
-                          ),
-                          Row(
-                            children: [
-                              Container(
-                                color: Colors.white,
-                                width: 178,
-                                height: 50,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 20,top: 8),
-                                      child: Text("Date:",style: TextStyle(color: Colors.grey)),
-                                    ),
-                                    Padding(
-                                        padding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
-                                        child: Container(
-                                          height: 20,
-                                          child: Text(date.toString()),
-                                        )
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  width: double.infinity,
-                  color: Colors.white,
-                  child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                       Text('Customer Name',style: TextStyle(color: Colors.grey)),
-                        Text(data[0]['cname'].toString())
+                          ],
+                        ),
                       ],
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Text("Product Details:",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),),
-                ),
-                SizedBox(
-                  child: ListView.builder(
-                    itemCount: data.length,
-                    shrinkWrap: true,
-                    physics: BouncingScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 5, 10, 8),
-                        child: Container(
-                          width: double.infinity,
-                          height: 100,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border(
-                                  bottom: BorderSide(
-                                      color: Colors.grey.withOpacity(0.5), width: 2),
-                                  left: BorderSide(color: Colors.grey.withOpacity(0.5)))),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                                child: Row(
+                  Container(
+                    width: double.infinity,
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                         Text('Customer Name',style: TextStyle(color: Colors.grey)),
+                          Text(data[0]['cname'].toString())
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Text("Product Details:",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),),
+                  ),
+                  SizedBox(
+                    child: ListView.builder(
+                      itemCount: data.length,
+                      shrinkWrap: true,
+                      physics: BouncingScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 5, 10, 8),
+                          child: Container(
+                            width: double.infinity,
+                            height: 100,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border(
+                                    bottom: BorderSide(
+                                        color: Colors.grey.withOpacity(0.5), width: 2),
+                                    left: BorderSide(color: Colors.grey.withOpacity(0.5)))),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              data[index]['iname'],
+                                              style: TextStyle(fontWeight: FontWeight.bold),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Expanded(
-                                      child: Row(
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            data[index]['iname'],
-                                            style: TextStyle(fontWeight: FontWeight.bold),
+                                            "Quantity",
+                                            style: TextStyle(color: Colors.grey),
                                           ),
+                                          Text(
+                                            data[index]['iquantity'],
+                                            style: TextStyle(fontWeight: FontWeight.bold),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Column(
+                                      children: [
+                                        Text(
+                                          "Rate",
+                                          style: TextStyle(color: Colors.grey),
+                                        ),
+                                        Text(
+                                          "₹"+data[index]['iprice'],
+                                          style: TextStyle(fontWeight: FontWeight.bold),
+                                        )
+                                      ],
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 10),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Amount",
+                                            style: TextStyle(color: Colors.grey),
+                                          ),
+                                          Text(
+                                            "₹ "+data[index]['iamount'],
+                                            style: TextStyle(fontWeight: FontWeight.bold),
+                                          )
                                         ],
                                       ),
                                     ),
                                   ],
-                                ),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 10),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Quantity",
-                                          style: TextStyle(color: Colors.grey),
-                                        ),
-                                        Text(
-                                          data[index]['iquantity'],
-                                          style: TextStyle(fontWeight: FontWeight.bold),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  Column(
-                                    children: [
-                                      Text(
-                                        "Rate",
-                                        style: TextStyle(color: Colors.grey),
-                                      ),
-                                      Text(
-                                        "₹"+data[index]['iprice'],
-                                        style: TextStyle(fontWeight: FontWeight.bold),
-                                      )
-                                    ],
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 10),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Amount",
-                                          style: TextStyle(color: Colors.grey),
-                                        ),
-                                        Text(
-                                          "₹ "+data[index]['iamount'],
-                                          style: TextStyle(fontWeight: FontWeight.bold),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              )
-                            ],
+                                )
+                              ],
+                            ),
                           ),
+                        );
+                      },
+                    ),
+                  ),
+                  BlocBuilder<CounterBloc, CounterState>(
+                    builder: (context, state) {
+                      return Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Row(
+                                children: [
+                                  Text("Bill Amount"),
+                                ],
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "₹ "+state.ans.toString(),
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       );
                     },
                   ),
-                ),
-                BlocBuilder<CounterBloc, CounterState>(
-                  builder: (context, state) {
-                    return Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Text("Bill Amount"),
-                              ],
-                            ),
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                "₹ "+state.ans.toString(),
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-              ],
-            ),
-          )
+                ],
+              ),
+            )
+        ),
       ),
     );
   }
